@@ -49,11 +49,28 @@ button:active {
   transform: translatey(4px);
 }
 
+.forecast {
+  margin-top: 2rem;
+}
+
+.description,
+.temperature {
+  font-size: 3rem;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .App {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   padding-top: 5rem;
+  flex-direction: column;
 }
 
 .App-logo {
