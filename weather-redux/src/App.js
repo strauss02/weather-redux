@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCity } from './features/weather/weatherSlice'
 import './App.css'
 
 function App() {
   const currentCity = useSelector((state) => state.weather.currentCity)
-  const weather = useSelector((state) => state.weather)
+  const cityForcast = useSelector((state) => state.weather.cityForcast)
   const dispatch = useDispatch()
 
   const [cityInput, setCityInput] = useState('')
+
+  useEffect(() => {
+    dispatch(changeCity(currentCity))
+  }, [])
 
   return (
     <div className="App">
@@ -22,12 +26,14 @@ function App() {
           get weather
         </button>
       </div>
-      {weather ? (
+
+      {/* {cityForcast ? (
         <div className="forecast">
+          <span>{currentCity}</span>
           <h3 className="temperature"> {weather.main.temp}</h3>
           <h3 className="description"> {weather.weather[0].description} </h3>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   )
 }

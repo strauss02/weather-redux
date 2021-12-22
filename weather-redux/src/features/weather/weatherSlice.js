@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  currentCity: '',
+  currentCity: 'London',
   cityForecast: [],
 }
 
@@ -26,15 +26,15 @@ export const weatherSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchWeather.pending, (state, action) => {
-        return 'loading'
+        state.cityForecast = 'loading'
       })
 
       .addCase(fetchWeather.fulfilled, (state, action) => {
-        return action.payload
+        state.cityForecast = action.payload
       })
 
       .addCase(fetchWeather.rejected, (state, action) => {
-        return 'error, please try another city name'
+        state.cityForecast = 'error, please try another city name'
       })
   },
 })
