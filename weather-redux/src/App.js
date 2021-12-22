@@ -12,7 +12,10 @@ function App() {
   return (
     <div className="App">
       <input placeholder="enter city name" />
-      <button>Change to this city</button>
+      <button>get weather</button>
+      <div className="forecast">
+        <div></div>
+      </div>
     </div>
   )
 }

@@ -5,15 +5,46 @@ const initialState = {
   cityForecast: [],
 }
 
+export const fetchWeather = createAsyncThunk(
+  'weather/fetchWeather',
+  async (city) => {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d9e86ca2b7c8f8c22a68438aa273a0b2`
+    )
+    return response
+  }
+)
+
 export const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
     changeCurrentCity: (state, action) => {
-      state.currentCity = action.payload.selectedCity
+      state.currentCity = action.payload
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchWeather.pending, (state, action) => {
+        return 'loading'
+      })
+
+      .addCase(fetchWeather.fulfilled, (state, action) => {
+        return action.payload
+      })
+
+      .addCase(fetchWeather.rejected, (state, action) => {
+        return 'error, please try another city name'
+      })
+  },
 })
+
+export const changeCity = (city) => {
+  return (dispatch) => {
+    dispatch(weatherSlice.actions.changeCurrentCity(city))
+    dispatch(fetchWeather(city))
+  }
+}
 
 export const selectWeather = (state) => state
 
