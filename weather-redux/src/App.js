@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeCity } from "./features/weather/weatherSlice";
-import "./App.css";
-import CityForcast from "./CityForcast";
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeCity } from './features/weather/weatherSlice'
+import './App.css'
+import CityForcast from './CityForcast'
 
 function App() {
-  const currentCity = useSelector((state) => state.weather.currentCity);
-  const dispatch = useDispatch();
+  const currentCity = useSelector((state) => state.weather.currentCity)
+  const dispatch = useDispatch()
 
-  const [cityInput, setCityInput] = useState("");
+  const [cityInput, setCityInput] = useState('')
 
   // useEffect(() => {
   //   dispatch(changeCity(currentCity));
@@ -28,7 +28,7 @@ function App() {
       </div>
       <CityForcast currentCity={currentCity} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
