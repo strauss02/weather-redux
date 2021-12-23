@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeCity } from './features/weather/weatherSlice'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCity } from "./features/weather/weatherSlice";
+import "./App.css";
+import CityForcast from "./CityForcast";
 
 function App() {
-  const currentCity = useSelector((state) => state.weather.currentCity)
-  const cityForcast = useSelector((state) => state.weather.cityForcast)
-  const dispatch = useDispatch()
+  const currentCity = useSelector((state) => state.weather.currentCity);
+  const dispatch = useDispatch();
 
-  const [cityInput, setCityInput] = useState('')
+  const [cityInput, setCityInput] = useState("");
 
-  useEffect(() => {
-    dispatch(changeCity(currentCity))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(changeCity(currentCity));
+  // }, []);
 
   return (
     <div className="App">
@@ -26,16 +26,9 @@ function App() {
           get weather
         </button>
       </div>
-
-      {/* {cityForcast ? (
-        <div className="forecast">
-          <span>{currentCity}</span>
-          <h3 className="temperature"> {weather.main.temp}</h3>
-          <h3 className="description"> {weather.weather[0].description} </h3>
-        </div>
-      ) : null} */}
+      <CityForcast currentCity={currentCity} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
